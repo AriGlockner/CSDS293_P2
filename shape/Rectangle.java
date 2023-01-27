@@ -1,5 +1,6 @@
 package shape;
 
+import java.util.Collection;
 import java.util.EnumMap;
 
 public final class Rectangle<T extends Comparable<T>> {
@@ -10,32 +11,48 @@ public final class Rectangle<T extends Comparable<T>> {
 
 	private final EnumMap<Direction, T> borders;
 
-	public Rectangle(T x1, T y1, T x2, T y2)
+	private Rectangle(EnumMap<Direction, T> borders)
 	{
-		// Initialize borders
-		borders = new EnumMap<>(Direction.class);
-
-		// Set borders
-		if (x1.compareTo(x2) < 1)
-		{
-			borders.put(Direction.left, x2);
-			borders.put(Direction.right, x1);
-		}
-		else{
-			borders.put(Direction.left, x1);
-			borders.put(Direction.right, x2);
-		}
-
+		this.borders = borders;
 	}
 
-	void getBorder(Direction direction)
+	/**
+	 * @param direction any direction left, right, top, or bottom to get the boarder of
+	 * @return the border corresponding with the given direction
+	 */
+	T getBorder(Direction direction)
 	{
-
+		return borders.get(direction);
 	}
 
-	EnumMap<Direction, T> getBorders()
+	/**
+	 * @param directions any of the directions left, right, top, bottom to get the boarder of
+	 * @return the border corresponding with the given directions
+	 */
+	EnumMap<Direction, T> getBorders(Collection<Direction> directions)
 	{
-		return borders;
+		// Create a new EnumMap
+		EnumMap<Direction, T> b = new EnumMap<>(Direction.class);
+
+		// Add each Border specified to the EnumMap
+		for (Direction d : directions)
+			if (!b.containsKey(d))
+				b.put(d, getBorder(d));
+
+		// Return the new EnumMap
+		return b;
+	}
+
+	public static<T extends Comparable<T>> Rectangle<T> of() throws RectangleException
+	{
+
+		return null;
+	}
+
+	public static<T extends Comparable<T>> Rectangle<T> copyOf(Rectangle<T> rectangle) throws RectangleException
+	{
+		//Rectangle<T> r = new Rectangle<>(rectangle.getBorders());
+		return null; //return r;
 	}
 
 	public static void main(String[] args)
