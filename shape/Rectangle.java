@@ -2,15 +2,17 @@ package shape;
 
 import java.util.Collection;
 import java.util.EnumMap;
+import java.util.Set;
 
 public final class Rectangle<T extends Comparable<T>> {
-
-	enum Direction {
-		left, right, top, bottom
-	}
-
+	// the borders of the Rectangle
 	private final EnumMap<Direction, T> borders;
 
+	/**
+	 * Instantiates a new Rectangle
+	 *
+	 * @param borders the borders of the Rectangle
+	 */
 	private Rectangle(EnumMap<Direction, T> borders)
 	{
 		this.borders = borders;
@@ -43,9 +45,12 @@ public final class Rectangle<T extends Comparable<T>> {
 		return b;
 	}
 
-	public static<T extends Comparable<T>> Rectangle<T> of() throws RectangleException
+	public static<T extends Comparable<T>> Rectangle<T> of(T left, T right, T bottom, T top) throws RectangleException
 	{
-
+		// TODO: Continue
+		Set<Object> set = Set.of(left, right, top, bottom);
+		if (set.contains(null))
+			RectangleException.verifyNonNull(set);
 		return null;
 	}
 

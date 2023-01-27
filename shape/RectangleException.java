@@ -10,7 +10,7 @@ public final class RectangleException extends Exception
 	}
 	// Type of Error
 	private final Error error;
-	private final Set<Integer> indexes;
+	private final Set<Object> indexes;
 	private final Object lesserBound;
 	private final Object greaterBound;
 
@@ -34,7 +34,7 @@ public final class RectangleException extends Exception
 	 * constructor is useful when reporting multiple erroneous null
 	 * values.
 	 */
-	RectangleException(Set<Integer> indexes)
+	RectangleException(Set<Object> indexes)
 	{
 		error = Error.NULL_POINTERS;
 		this.indexes = indexes;
@@ -79,9 +79,9 @@ public final class RectangleException extends Exception
 	 *
 	 * @param indexes
 	 */
-	public static void verifyNonNull(Set<Integer> indexes)
+	public static<T> void verifyNonNull(Set<Object> indexes)
 	{
-		for (Integer obj : indexes)
+		for (Object obj : indexes)
 			if (obj == null)
 				throw new IllegalArgumentException(new RectangleException(indexes));
 	}
