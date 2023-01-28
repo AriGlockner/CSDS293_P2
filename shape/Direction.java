@@ -14,9 +14,8 @@ public enum Direction
 	public final boolean increment;
 
 	/**
-	 *
 	 * @param horizontal If the direction LEFT or RIGHT
-	 * @param increment If the direction is RIGHT or TOP
+	 * @param increment  If the direction is RIGHT or TOP
 	 */
 	Direction(boolean horizontal, boolean increment)
 	{
@@ -26,7 +25,7 @@ public enum Direction
 
 	/**
 	 * @param horizontal true if the direction is left or right
-	 * @param increment true if the direction is right or top
+	 * @param increment  true if the direction is right or top
 	 * @return the direction given horizontal and increment
 	 */
 	public static Direction getDirection(boolean horizontal, boolean increment)

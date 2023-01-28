@@ -1,18 +1,26 @@
 package shape;
 
-import java.util.Comparator;
+import java.io.Serializable;
 import java.util.Set;
 
-public final class RectangleException extends Exception
+public final class RectangleException extends Exception implements Serializable
 {
-	public enum Error {
+	public enum Error
+	{
 		NULL_POINTERS, INVALID_BOUNDS
 	}
+
+	// TODO: Comment
 	// Type of Error
 	private final Error error;
+	//
 	private final Set<Object> indexes;
+	// Bounds
 	private final Object lesserBound;
 	private final Object greaterBound;
+
+	//
+	private static final long SerialVersionUID = 239L;
 
 	/**
 	 * Sets  the  value  of  error  from  its  argument,  and  the  other
@@ -46,8 +54,8 @@ public final class RectangleException extends Exception
 	 * argument values, and the indexes to null. This constructor is
 	 * useful when the bounds are erroneous.
 	 *
-	 * @param error type of error
-	 * @param lesserBound smaller bound of Rectangle
+	 * @param error        type of error
+	 * @param lesserBound  smaller bound of Rectangle
 	 * @param greaterBound larger bound of Rectangle
 	 */
 	RectangleException(Error error, Object lesserBound, Object greaterBound)
@@ -65,11 +73,14 @@ public final class RectangleException extends Exception
 	 * an IllegalArgumentException whose cause is a descriptive
 	 * RectangleException.
 	 */
-	public static<S extends Comparator<S>> void verifyBounds(S lesserBound, S greaterBound)
+	public static <T extends Comparable<T>> void verifyBounds(T lesserBound, T greaterBound)
 	{
-		if (lesserBound.compare(lesserBound, greaterBound) >= 0)
+		if (lesserBound.compareTo(greaterBound) >= 0)
 			throw new IllegalArgumentException(new RectangleException(Error.INVALID_BOUNDS, lesserBound, greaterBound));
 	}
+
+
+	// TODO: Check what the type should be in the indexes set
 
 	/**
 	 * The RectangleException has a public static verify NonNull
@@ -79,10 +90,12 @@ public final class RectangleException extends Exception
 	 *
 	 * @param indexes
 	 */
-	public static<T> void verifyNonNull(Set<Object> indexes)
+	public static void verifyNonNull(Set<Object> indexes)
 	{
 		for (Object obj : indexes)
 			if (obj == null)
 				throw new IllegalArgumentException(new RectangleException(indexes));
 	}
+
+	// TODO: serialVersionUID
 }
