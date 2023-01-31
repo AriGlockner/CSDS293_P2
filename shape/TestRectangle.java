@@ -14,22 +14,43 @@ import java.util.stream.Stream;
 public class TestRectangle
 {
 
-	// TODO:
-	// check Rectangle.of(1, 2, 1, 2);
 	@Test
-	public void testRectangle() throws RectangleException
+	public void testRectangle()
 	{
+		// Test Rectangle.of and Rectangle.copyOf
 		Rectangle<Integer> rectangle = Rectangle.of(1, 2, 1, 2);
+		Rectangle<Integer> copy = Rectangle.copyOf(rectangle);
+		Assert.assertEquals(rectangle, copy);
 
-		/*
-		Rectangle<Integer> r = Rectangle.of(1, 2, 3, 4);
-		Rectangle<Integer> copy = Rectangle.copyOf(r);
+		//
 
-		Assert.assertEquals(r, copy);
-		r = Rectangle.of(1, 2, 4, 5);
-		Assert.assertNotEquals(r, copy);
+	}
 
-		Assert.assertThrows(new RectangleException(), Rectangle.of(4, 3, 2, 1));
-		 */
+	/**
+	 * Tests the verifyNotNull method in the RectangleException class
+	 */
+	@Test
+	public void testVerifyNotNull()
+	{
+		Exception exception = Assert.assertThrows(NullPointerException.class, () -> Rectangle.of(1, null, 2, 1));
+		Assert.assertEquals("Cannot invoke \"Object.hashCode()\" because \"pe\" is null", exception.getMessage());
+		exception = Assert.assertThrows(NullPointerException.class, () -> Rectangle.of(null, null, null, null));
+		Assert.assertEquals("Cannot invoke \"Object.hashCode()\" because \"pe\" is null", exception.getMessage());
+		exception = Assert.assertThrows(NullPointerException.class, () -> Rectangle.of(null, 8, 2, 1));
+		Assert.assertEquals("Cannot invoke \"Object.hashCode()\" because \"pe\" is null", exception.getMessage());
+	}
+
+	/**
+	 * Tests the verifyBounds method in the RectangleException class
+	 */
+	@Test
+	public void testVerifyBounds()
+	{
+		Exception exception = Assert.assertThrows(IllegalArgumentException.class, () -> Rectangle.of(1, 2, 2, 1));
+		Assert.assertEquals("shape.RectangleException", exception.getMessage());
+		exception = Assert.assertThrows(IllegalArgumentException.class, () -> Rectangle.of(1, 0, 0, 1));
+		Assert.assertEquals("shape.RectangleException", exception.getMessage());
+		exception = Assert.assertThrows(IllegalArgumentException.class, () -> Rectangle.of(2, 2, 2, 2));
+		Assert.assertEquals("shape.RectangleException", exception.getMessage());
 	}
 }

@@ -67,8 +67,15 @@ public final class Rectangle<T extends Comparable<T>>
 		return false;
 	}
 
-	public static <T extends Comparable<T>> Rectangle<T> of(T left, T right, T bottom, T top) throws RectangleException
+	public static <T extends Comparable<T>> Rectangle<T> of(T left, T right, T bottom, T top)
 	{
+		// Verify that nothing is null
+		RectangleException.verifyNonNull(Set.of(left, right, bottom, top));
+
+		// Verify the bounds
+		RectangleException.verifyBounds(left, right);
+		RectangleException.verifyBounds(bottom, top);
+
 		// Create and return a new Rectangle
 		EnumMap<Direction, T> map = new EnumMap<>(Direction.class);
 		map.put(Direction.LEFT, left);
@@ -76,13 +83,7 @@ public final class Rectangle<T extends Comparable<T>>
 		map.put(Direction.BOTTOM, bottom);
 		map.put(Direction.TOP, top);
 
-		// Verify that nothing is null
-		RectangleException.verifyNonNull(Set.of(map.values()));
-
-		// Verify the bounds
-		RectangleException.verifyBounds(left, right);
-		RectangleException.verifyBounds(bottom, top);
-
+		// Return the Rectangle after it is determined that no bounds are neither null nor invalid
 		return new Rectangle<>(map);
 	}
 
