@@ -3,6 +3,11 @@ package shape;
 import java.io.Serializable;
 import java.util.Set;
 
+/**
+ * This
+ *
+ * @author ari
+ */
 public final class RectangleException extends Exception implements Serializable
 {
 	public enum Error

@@ -4,10 +4,23 @@ import java.util.Collection;
 import java.util.EnumMap;
 import java.util.Set;
 
+/**
+ * The building block of the polygon module is a public final class Rectangle. A rectangle is defined by its borders
+ * and contains a private final EnumMap<Direction, T> borders variable, which maps each border to its coordinates
+ *
+ * @param <T> Generic type used for each border's coordinates
+ *
+ * @author ari
+ */
 public final class Rectangle<T extends Comparable<T>>
 {
 	// the borders of the Rectangle
 	private final EnumMap<Direction, T> borders;
+
+	// Direction Bounds of the Rectangle
+	static final Set<Direction> HORIZONTAL_BOUNDS = Set.of(Direction.LEFT, Direction.RIGHT);
+	static final Set<Direction> VERTICAL_BOUNDS = Set.of(Direction.BOTTOM, Direction.TOP);
+	static final Set<Direction> ALL_BOUNDS = Set.of(Direction.LEFT, Direction.RIGHT, Direction.BOTTOM, Direction.TOP);
 
 	/**
 	 * Instantiates a new Rectangle
@@ -46,21 +59,30 @@ public final class Rectangle<T extends Comparable<T>>
 		return b;
 	}
 
-	public static <T extends Comparable<T>> Rectangle<T> of(T left, T right, T bottom, T top)
+	@Override
+	public boolean equals(Object o)
 	{
-		// Verify that nothing is null
-		RectangleException.verifyNonNull(Set.of(left, right, top, bottom));
+		if (o instanceof Rectangle<?>)
+			return getBorders(ALL_BOUNDS).equals(((Rectangle<?>) o).getBorders(ALL_BOUNDS));
+		return false;
+	}
 
-		// Verify the bounds
-		RectangleException.verifyBounds(left, right);
-		RectangleException.verifyBounds(bottom, top);
-
+	public static <T extends Comparable<T>> Rectangle<T> of(T left, T right, T bottom, T top) throws RectangleException
+	{
 		// Create and return a new Rectangle
 		EnumMap<Direction, T> map = new EnumMap<>(Direction.class);
 		map.put(Direction.LEFT, left);
 		map.put(Direction.RIGHT, right);
 		map.put(Direction.BOTTOM, bottom);
 		map.put(Direction.TOP, top);
+
+		// Verify that nothing is null
+		RectangleException.verifyNonNull(Set.of(map.values()));
+
+		// Verify the bounds
+		RectangleException.verifyBounds(left, right);
+		RectangleException.verifyBounds(bottom, top);
+
 		return new Rectangle<>(map);
 	}
 

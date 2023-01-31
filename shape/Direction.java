@@ -1,5 +1,10 @@
 package shape;
 
+/**
+ * This enum represents the keys for the EnumMaps that maps to the coordinates for the Rectangle.
+ *
+ * @author ari
+ */
 public enum Direction
 {
 	// Directions
