@@ -27,21 +27,4 @@ public enum Direction
 		this.horizontal = horizontal;
 		this.increment = increment;
 	}
-
-	/**
-	 * @param horizontal true if the direction is left or right
-	 * @param increment  true if the direction is right or top
-	 * @return the direction given horizontal and increment
-	 */
-	public static Direction getDirection(boolean horizontal, boolean increment)
-	{
-		if (horizontal)
-			if (increment)
-				return RIGHT;
-			else
-				return LEFT;
-		if (increment)
-			return TOP;
-		return BOTTOM;
-	}
 }
