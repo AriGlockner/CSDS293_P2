@@ -1,6 +1,7 @@
 package shape;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.Set;
 
 /**
@@ -95,11 +96,15 @@ public final class RectangleException extends Exception implements Serializable
 	 *
 	 * @param indexes
 	 */
-	public static void verifyNonNull(Set<Object> indexes)
+	// TODO: Adjust parmeter to (Object...args)
+	public static void verifyNonNull(Object...indexes)
 	{
 		for (Object obj : indexes)
+		{
+			System.out.println(obj);
 			if (obj == null)
-				throw new IllegalArgumentException(new RectangleException(indexes));
+				throw new IllegalArgumentException(new RectangleException(Collections.singleton(indexes)));
+		}
 	}
 
 	// TODO: serialVersionUID

@@ -2,10 +2,6 @@ package shape;
 
 import org.junit.*;
 
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Stream;
-
 /**
  * This class tests the Rectangle class
  *
@@ -46,6 +42,8 @@ public class TestRectangle
 	@Test
 	public void testVerifyBounds()
 	{
+		Rectangle<Integer> rectangle = Rectangle.of(1, 2, 3, 4);
+
 		Exception exception = Assert.assertThrows(IllegalArgumentException.class, () -> Rectangle.of(1, 2, 2, 1));
 		Assert.assertEquals("shape.RectangleException", exception.getMessage());
 		exception = Assert.assertThrows(IllegalArgumentException.class, () -> Rectangle.of(1, 0, 0, 1));

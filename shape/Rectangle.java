@@ -94,6 +94,6 @@ public final class Rectangle<T extends Comparable<T>>
 	 */
 	public static <T extends Comparable<T>> Rectangle<T> copyOf(Rectangle<T> rectangle)
 	{
-		return new Rectangle<>(rectangle.getBorders(Set.of(Direction.LEFT, Direction.RIGHT, Direction.TOP, Direction.BOTTOM)));
+		return new Rectangle<>(rectangle.getBorders(Set.of(Direction.LEFT, Direction.RIGHT, Direction.BOTTOM, Direction.TOP)));
 	}
 }
