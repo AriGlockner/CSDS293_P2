@@ -1,7 +1,10 @@
 package shape;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.Set;
 
 /**
@@ -9,7 +12,7 @@ import java.util.Set;
  *
  * @author ari
  */
-public final class RectangleException extends Exception implements Serializable
+public final class RectangleException extends Exception
 {
 	public enum Error
 	{
@@ -26,7 +29,8 @@ public final class RectangleException extends Exception implements Serializable
 	private final Object greaterBound;
 
 	//
-	private static final long SerialVersionUID = 239L;
+	@Serial
+	private static final long serialVersionUID = 239L;
 
 	/**
 	 * Sets  the  value  of  error  from  its  argument,  and  the  other
@@ -85,27 +89,27 @@ public final class RectangleException extends Exception implements Serializable
 			throw new IllegalArgumentException(new RectangleException(Error.INVALID_BOUNDS, lesserBound, greaterBound));
 	}
 
-
-	// TODO: Check what the type should be in the indexes set
-
 	/**
 	 * The RectangleException has a public static verify NonNull
 	 * method whose argument is a vararg Object array and that, if any of
 	 * the arguments is null, throws a IllegalArgumentException whose
 	 * cause is a descriptive RectangleException.
 	 *
-	 * @param indexes
+	 * @param indices
 	 */
-	// TODO: Adjust parmeter to (Object...args)
-	public static void verifyNonNull(Object...indexes)
+	public static void verifyNonNull(Object...indices)
 	{
-		for (Object obj : indexes)
-		{
-			System.out.println(obj);
-			if (obj == null)
-				throw new IllegalArgumentException(new RectangleException(Collections.singleton(indexes)));
-		}
-	}
+		Set<Object> exceptions = new HashSet<>();
+		Set<Integer> errors = new HashSet<>();
 
-	// TODO: serialVersionUID
+		for (int i = 0; i < indices.length; i++)
+			if (indices[i] == null)
+			{
+				exceptions.add(null);
+				errors.add(i);
+			}
+
+		if (exceptions.size() > 0)
+			throw new IllegalArgumentException("Indices " + errors + " are null", new RectangleException(exceptions));
+	}
 }

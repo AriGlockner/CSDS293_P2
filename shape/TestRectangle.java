@@ -28,12 +28,12 @@ public class TestRectangle
 	@Test
 	public void testVerifyNotNull()
 	{
-		Exception exception = Assert.assertThrows(NullPointerException.class, () -> Rectangle.of(1, null, 2, 1));
-		Assert.assertEquals("Cannot invoke \"Object.hashCode()\" because \"pe\" is null", exception.getMessage());
-		exception = Assert.assertThrows(NullPointerException.class, () -> Rectangle.of(null, null, null, null));
-		Assert.assertEquals("Cannot invoke \"Object.hashCode()\" because \"pe\" is null", exception.getMessage());
-		exception = Assert.assertThrows(NullPointerException.class, () -> Rectangle.of(null, 8, 2, 1));
-		Assert.assertEquals("Cannot invoke \"Object.hashCode()\" because \"pe\" is null", exception.getMessage());
+		Exception exception = Assert.assertThrows(IllegalArgumentException.class, () -> Rectangle.of(1, null, 2, 1));
+		Assert.assertEquals("Indices [1] are null", exception.getMessage());
+		exception = Assert.assertThrows(IllegalArgumentException.class, () -> Rectangle.of(null, null, null, null));
+		Assert.assertEquals("Indices [0, 1, 2, 3] are null", exception.getMessage());
+		exception = Assert.assertThrows(IllegalArgumentException.class, () -> Rectangle.of(null, 8, 2, 1));
+		Assert.assertEquals("Indices [0] are null", exception.getMessage());
 	}
 
 	/**

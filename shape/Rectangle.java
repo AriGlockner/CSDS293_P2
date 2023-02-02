@@ -70,7 +70,7 @@ public final class Rectangle<T extends Comparable<T>>
 	public static <T extends Comparable<T>> Rectangle<T> of(T left, T right, T bottom, T top)
 	{
 		// Verify that nothing is null
-		RectangleException.verifyNonNull(Set.of(left, right, bottom, top));
+		RectangleException.verifyNonNull(left, right, bottom, top);
 
 		// Verify the bounds
 		RectangleException.verifyBounds(left, right);
@@ -94,6 +94,6 @@ public final class Rectangle<T extends Comparable<T>>
 	 */
 	public static <T extends Comparable<T>> Rectangle<T> copyOf(Rectangle<T> rectangle)
 	{
-		return new Rectangle<>(rectangle.getBorders(Set.of(Direction.LEFT, Direction.RIGHT, Direction.BOTTOM, Direction.TOP)));
+		return new Rectangle<>(rectangle.getBorders(ALL_BOUNDS));
 	}
 }
