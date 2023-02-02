@@ -9,7 +9,6 @@ import java.util.Set;
  * and contains a private final EnumMap<Direction, T> borders variable, which maps each border to its coordinates
  *
  * @param <T> Generic type used for each border's coordinates
- *
  * @author ari
  */
 public final class Rectangle<T extends Comparable<T>>
@@ -59,6 +58,10 @@ public final class Rectangle<T extends Comparable<T>>
 		return b;
 	}
 
+	/**
+	 * @param o other object to compare to
+	 * @return true if other object is a Rectangle that shares the same boundaries and false otherwise
+	 */
 	@Override
 	public boolean equals(Object o)
 	{
@@ -67,6 +70,14 @@ public final class Rectangle<T extends Comparable<T>>
 		return false;
 	}
 
+	/**
+	 * @param left   left boundary
+	 * @param right  right boundary
+	 * @param bottom bottom boundary
+	 * @param top    top boundary
+	 * @param <T>    generic type that the parameters are
+	 * @return a new Rectangle with the boarders specified as the parameters
+	 */
 	public static <T extends Comparable<T>> Rectangle<T> of(T left, T right, T bottom, T top)
 	{
 		// Verify that nothing is null
