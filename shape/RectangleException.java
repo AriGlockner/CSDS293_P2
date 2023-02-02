@@ -1,14 +1,11 @@
 package shape;
 
 import java.io.Serial;
-import java.io.Serializable;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.Set;
 
 /**
- * This
+ * This class are the exceptions for the Rectangle class
  *
  * @author ari
  */
@@ -19,16 +16,15 @@ public final class RectangleException extends Exception
 		NULL_POINTERS, INVALID_BOUNDS
 	}
 
-	// TODO: Comment
 	// Type of Error
 	private final Error error;
-	//
+	// Indices of the Rectangle that are problematic
 	private final Set<Object> indexes;
-	// Bounds
+	// Bounds of the Rectangle
 	private final Object lesserBound;
 	private final Object greaterBound;
 
-	//
+	// Serial ID
 	@Serial
 	private static final long serialVersionUID = 239L;
 
@@ -95,7 +91,7 @@ public final class RectangleException extends Exception
 	 * the arguments is null, throws a IllegalArgumentException whose
 	 * cause is a descriptive RectangleException.
 	 *
-	 * @param indices
+	 * @param indices indices of the Rectangle
 	 */
 	public static void verifyNonNull(Object...indices)
 	{
