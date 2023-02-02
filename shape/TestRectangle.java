@@ -9,17 +9,23 @@ import org.junit.*;
  */
 public class TestRectangle
 {
-
+	/**
+	 * Tests the Rectangle class
+	 */
 	@Test
 	public void testRectangle()
 	{
 		// Test Rectangle.of and Rectangle.copyOf
 		Rectangle<Integer> rectangle = Rectangle.of(1, 2, 1, 2);
-		Rectangle<Integer> copy = Rectangle.copyOf(rectangle);
-		Assert.assertEquals(rectangle, copy);
+		Assert.assertEquals(rectangle, Rectangle.copyOf(rectangle));
 
-		//
+		// Test equals method
+		Assert.assertNotEquals(rectangle, Rectangle.of(5, 6, 5, 6));
 
+		// Test that the Rectangle works with other types than Integers
+		Rectangle.of(Math.E, Math.PI, 1.0, Double.MAX_VALUE);
+		Rectangle.of('a', 'b', 'C', 'D');
+		Rectangle.of(Long.MIN_VALUE, Long.MAX_VALUE, 1L, 5L);
 	}
 
 	/**
@@ -42,8 +48,6 @@ public class TestRectangle
 	@Test
 	public void testVerifyBounds()
 	{
-		Rectangle<Integer> rectangle = Rectangle.of(1, 2, 3, 4);
-
 		Exception exception = Assert.assertThrows(IllegalArgumentException.class, () -> Rectangle.of(1, 2, 2, 1));
 		Assert.assertEquals("shape.RectangleException", exception.getMessage());
 		exception = Assert.assertThrows(IllegalArgumentException.class, () -> Rectangle.of(1, 0, 0, 1));
