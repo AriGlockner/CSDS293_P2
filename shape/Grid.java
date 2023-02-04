@@ -3,19 +3,28 @@ package shape;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public final class Grid implements Iterable<IndexPair>
 {
 	private final List<IndexPair> grid;
+	private final Rectangle<Integer> rectangle;
 
 	private Grid(Rectangle<Integer> rectangle)
 	{
 		grid = new ArrayList<>();
 
-		// TODO: Use streams
-		for (int i = rectangle.getBorder(Direction.LEFT); i < rectangle.getBorder(Direction.RIGHT); i++)
-			for (int j = rectangle.getBorder(Direction.BOTTOM); j < rectangle.getBorder(Direction.TOP); j++)
-				grid.add(new IndexPair(i, j));
+		// For each possible x value, add each possible y value to the grid
+		IntStream.range(rectangle.getBorder(Direction.LEFT),
+				rectangle.getBorder(Direction.RIGHT)).forEach(x -> {
+					// Add each possible index pair for each x to the grid
+					grid.addAll(IntStream.range(rectangle.getBorder(Direction.BOTTOM),
+							// Get a list of each possible index pair for each x
+							rectangle.getBorder(Direction.TOP)).mapToObj(y -> new IndexPair(x, y)).toList());
+				});
+
+		// TODO: remove???
+		this.rectangle = rectangle;
 	}
 
 	/**
