@@ -1,9 +1,6 @@
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+package shape;
+
+import java.util.*;
 
 /**
  * The purpose of the AxisMap class is to maintain the explicit coordinates in sorted order. The AxisMap has a private
@@ -30,9 +27,9 @@ public final class AxisMap<S>
 	 * @param value value to get the index of
 	 * @return the index of the given value, or null if the value does not have an index
 	 */
-	Integer flatIndexOf(S value)
+	Optional<Integer> flatIndexOf(S value)
 	{
-		return index.get(value);
+		return Optional.of(index.get(value));
 	}
 
 	/**
@@ -54,22 +51,37 @@ public final class AxisMap<S>
 
 	/**
 	 * @param coordinates
-	 * @return a new AxisMap starting from the given coordinates
 	 * @param <S>
+	 * @return a new AxisMap starting from the given coordinates
 	 */
-	static<S> AxisMap<S> from(Collection<S> coordinates)
+	// TODO: Write using a stream
+	static <S> AxisMap<S> from(Collection<S> coordinates)
 	{
 		Map<S, Integer> map = new HashMap<>(coordinates.size());
 
+		int index = 0;
+		for (S coordinate : coordinates)
+			map.put(coordinate, index++);
 
 		/*
-		for (S coordinate : coordinates)
-			map.put(coordinate, count++);
-
-		Stream.of(coordinates).map(coordinates);
+		Map<S, Integer> foo = coordinates.stream().collect(Collectors.toMap(a -> a, index++));
+		// Collectors.toMap(value -> value, value -> value));
+		return new AxisMap<>(foo);
 		 */
+		return new AxisMap<>(map);
+	}
 
-		//return new AxisMap<>(coordinates.stream().collect(Collectors.toMap(cord -> coordinates, cord)));
-		return null;
+
+	@Override
+	public String toString()
+	{
+		return index.toString();
+	}
+
+	public static void main(String[] args)
+	{
+		Collection<String> c = Set.of("a", "b", "c", "d");
+		AxisMap<String> foo = AxisMap.from(c);
+		System.out.println(foo);
 	}
 }

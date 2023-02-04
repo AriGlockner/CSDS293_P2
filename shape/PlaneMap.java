@@ -1,12 +1,22 @@
+package shape;
+
 import shape.Rectangle;
 
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.Optional;
 import java.util.Set;
 
+/**
+ * The PlaneMap class maintains a horizontal and a vertical AxisMap.
+ *
+ * @param <S>
+ */
 public final class PlaneMap<S>
 {
+	// Horizontal AxisMap
 	private AxisMap<S> x;
+	// Vertical AxisMap
 	private AxisMap<S> y;
 
 	private PlaneMap(AxisMap<S> x, AxisMap<S> y)
@@ -66,12 +76,22 @@ public final class PlaneMap<S>
 
 	/**
 	 * @param rectangles
-	 * @return a new PlaneMap whose axes correspond to the border coordinates that appear explicitly in the Rectangles
 	 * @param <S>
+	 * @return a new PlaneMap whose axes correspond to the border coordinates that appear explicitly in the Rectangles
 	 */
-	public static<S> PlaneMap<S> from(Set<Rectangle> rectangles)
+	public static <S extends Comparable<S>> PlaneMap<S> from(Set<Rectangle<S>> rectangles)
 	{
-		return null;
+		Collection<S> horizontal = new LinkedList<>();
+		Collection<S> vertical = new LinkedList<>();
+
+		// TODO: Use Streams
+		for (Rectangle<S> r : rectangles)
+		{
+			horizontal.addAll(r.getBorders(Rectangle.HORIZONTAL_BOUNDS).values());
+			vertical.addAll(r.getBorders(Rectangle.VERTICAL_BOUNDS).values());
+		}
+
+		return of(horizontal, vertical);
 	}
 
 	/**
@@ -83,5 +103,11 @@ public final class PlaneMap<S>
 	public static <S> PlaneMap<S> of(Collection<S> x, Collection<S> y)
 	{
 		return new PlaneMap<>(AxisMap.from(x), AxisMap.from(y));
+	}
+
+
+	public static void main(String[] args)
+	{
+		//IndexPair p1 = new IndexPair(0, 0);
 	}
 }

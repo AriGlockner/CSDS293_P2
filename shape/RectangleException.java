@@ -93,7 +93,7 @@ public final class RectangleException extends Exception
 	 *
 	 * @param indices indices of the Rectangle
 	 */
-	public static void verifyNonNull(Object...indices)
+	public static void verifyNonNull(Object... indices)
 	{
 		Set<Object> exceptions = new HashSet<>();
 		Set<Integer> errors = new HashSet<>();
