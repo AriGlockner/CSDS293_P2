@@ -1,6 +1,7 @@
 package shape;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 /**
  * The purpose of the AxisMap class is to maintain the explicit coordinates in sorted order. The AxisMap has a private
@@ -11,15 +12,17 @@ import java.util.*;
  */
 public final class AxisMap<S>
 {
-	private Map<S, Integer> index;
+	// The AxisMap that stores the coordinate as the key and the index as the value
+	private final Map<S, Integer> index;
 
 	/**
 	 * Creates a new AxisMap. An AxisMap can only be instantiated from one of its Factory methods
 	 *
-	 * @param index
+	 * @param index the AxisMap
 	 */
 	private AxisMap(Map<S, Integer> index)
 	{
+		assert index != null;
 		this.index = index;
 	}
 
@@ -50,28 +53,28 @@ public final class AxisMap<S>
 	}
 
 	/**
-	 * @param coordinates
-	 * @param <S>
+	 * @param coordinates list of coordinates to put into the map
+	 * @param <S>         generic type of the coordinates
 	 * @return a new AxisMap starting from the given coordinates
 	 */
-	// TODO: Write using a stream
 	static <S> AxisMap<S> from(Collection<S> coordinates)
 	{
+		// Create a map
 		Map<S, Integer> map = new HashMap<>(coordinates.size());
 
-		int index = 0;
-		for (S coordinate : coordinates)
-			map.put(coordinate, index++);
+		// Convert the collection into an ArrayList
+		ArrayList<S> cords = new ArrayList<>(coordinates);
 
-		/*
-		Map<S, Integer> foo = coordinates.stream().collect(Collectors.toMap(a -> a, index++));
-		// Collectors.toMap(value -> value, value -> value));
-		return new AxisMap<>(foo);
-		 */
+		// Map Each coordinate to the index it is associated with
+		IntStream.range(0, coordinates.size()).forEach(count -> map.put(cords.get(count), count));
+
 		return new AxisMap<>(map);
 	}
 
 
+	/**
+	 * @return the Axis Map as a string
+	 */
 	@Override
 	public String toString()
 	{

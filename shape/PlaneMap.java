@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 /**
  * The PlaneMap class maintains a horizontal and a vertical AxisMap.
@@ -68,10 +69,7 @@ public final class PlaneMap<S>
 	 */
 	Integer indexOf(S value, boolean horizontal)
 	{
-		// TODO: Determine if the conditional statement can be removed
-		if (horizontal)
-			return Optional.of(x.indexOf(value)).get().orElse(null);
-		return Optional.of(y.indexOf(value)).get().orElse(null);
+		return horizontal ? Optional.of(x.indexOf(value)).get().orElse(null) : Optional.of(y.indexOf(value)).get().orElse(null);
 	}
 
 	/**
@@ -84,20 +82,18 @@ public final class PlaneMap<S>
 		Collection<S> horizontal = new LinkedList<>();
 		Collection<S> vertical = new LinkedList<>();
 
-		// TODO: Use Streams
-		for (Rectangle<S> r : rectangles)
-		{
-			horizontal.addAll(r.getBorders(Rectangle.HORIZONTAL_BOUNDS).values());
-			vertical.addAll(r.getBorders(Rectangle.VERTICAL_BOUNDS).values());
-		}
+		rectangles.forEach(rect -> {
+			horizontal.addAll(rect.getBorders(Rectangle.HORIZONTAL_BOUNDS).values());
+			vertical.addAll(rect.getBorders(Rectangle.VERTICAL_BOUNDS).values());
+		});
 
 		return of(horizontal, vertical);
 	}
 
 	/**
-	 * @param x
-	 * @param y
-	 * @param <S>
+	 * @param x   x-axis map to create
+	 * @param y   y-axis map to create
+	 * @param <S> generic type of the axis map
 	 * @return a new AxisPlane which consists of 2 AxisMaps
 	 */
 	public static <S> PlaneMap<S> of(Collection<S> x, Collection<S> y)
@@ -108,6 +104,15 @@ public final class PlaneMap<S>
 
 	public static void main(String[] args)
 	{
-		//IndexPair p1 = new IndexPair(0, 0);
+		Rectangle<Integer> r1 = Rectangle.of(1, 2, 1, 2);
+		Rectangle<Integer> r2 = Rectangle.of(3, 4, 4, 5);
+		Rectangle<Integer> r3 = Rectangle.of(0, 5, 2, 9);
+		PlaneMap<Integer> planeMap = PlaneMap.from(Set.of(r1, r2, r3));
+
+		System.out.println(planeMap.indexOf(2, true));
+		System.out.println(planeMap.indexOf(2, false));
+		System.out.println(planeMap.indexOf(1, true));
+		System.out.println(planeMap.xSize());
+		System.out.println(planeMap.ySize());
 	}
 }

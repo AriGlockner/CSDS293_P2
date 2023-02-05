@@ -28,6 +28,7 @@ public final class Rectangle<T extends Comparable<T>>
 	 */
 	private Rectangle(EnumMap<Direction, T> borders)
 	{
+		assert borders != null;
 		this.borders = borders;
 	}
 

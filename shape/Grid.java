@@ -12,11 +12,13 @@ public final class Grid implements Iterable<IndexPair>
 
 	private Grid(Rectangle<Integer> rectangle)
 	{
+		assert rectangle != null;
+
+		// Create a new Grid
 		grid = new ArrayList<>();
 
 		// For each possible x value, add each possible y value to the grid
-		IntStream.range(rectangle.getBorder(Direction.LEFT),
-				rectangle.getBorder(Direction.RIGHT)).forEach(x -> {
+		IntStream.range(rectangle.getBorder(Direction.LEFT), rectangle.getBorder(Direction.RIGHT)).forEach(x -> {
 					// Add each possible index pair for each x to the grid
 					grid.addAll(IntStream.range(rectangle.getBorder(Direction.BOTTOM),
 							// Get a list of each possible index pair for each x
