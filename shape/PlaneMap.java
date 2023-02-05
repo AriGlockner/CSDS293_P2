@@ -1,12 +1,9 @@
 package shape;
 
-import shape.Rectangle;
-
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Stream;
 
 /**
  * The PlaneMap class maintains a horizontal and a vertical AxisMap.
@@ -16,10 +13,16 @@ import java.util.stream.Stream;
 public final class PlaneMap<S>
 {
 	// Horizontal AxisMap
-	private AxisMap<S> x;
+	private final AxisMap<S> x;
 	// Vertical AxisMap
-	private AxisMap<S> y;
+	private final AxisMap<S> y;
 
+	/**
+	 * Instantiates a new PlaneMap which consists of 2 AxisMaps x and y
+	 *
+	 * @param x Horizontal AxisMap
+	 * @param y Vertical AxisMap
+	 */
 	private PlaneMap(AxisMap<S> x, AxisMap<S> y)
 	{
 		this.x = x;
@@ -73,8 +76,8 @@ public final class PlaneMap<S>
 	}
 
 	/**
-	 * @param rectangles
-	 * @param <S>
+	 * @param rectangles Set of rectangles to create a PlaneMap of
+	 * @param <S>        Generic type of the Rectangles
 	 * @return a new PlaneMap whose axes correspond to the border coordinates that appear explicitly in the Rectangles
 	 */
 	public static <S extends Comparable<S>> PlaneMap<S> from(Set<Rectangle<S>> rectangles)

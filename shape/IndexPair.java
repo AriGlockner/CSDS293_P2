@@ -6,6 +6,7 @@ record IndexPair(int xIndex, int yIndex) implements Comparable<IndexPair>
 	 * @param direction
 	 * @return the next index pair in the given direction
 	 */
+	// TODO: Write
 	public IndexPair increment(Direction direction)
 	{
 		return null;
