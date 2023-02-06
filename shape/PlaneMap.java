@@ -72,7 +72,7 @@ public final class PlaneMap<S>
 	 */
 	Integer indexOf(S value, boolean horizontal)
 	{
-		return horizontal ? Optional.of(x.indexOf(value)).get().orElse(null) : Optional.of(y.indexOf(value)).get().orElse(null);
+		return horizontal ? x.flatIndexOf(value) : y.flatIndexOf(value);
 	}
 
 	/**

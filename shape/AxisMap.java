@@ -30,9 +30,9 @@ public final class AxisMap<S>
 	 * @param value value to get the index of
 	 * @return the index of the given value, or null if the value does not have an index
 	 */
-	Optional<Integer> flatIndexOf(S value)
+	Integer flatIndexOf(S value)
 	{
-		return Optional.of(index.get(value));
+		return index.getOrDefault(value, null);
 	}
 
 	/**
@@ -59,6 +59,8 @@ public final class AxisMap<S>
 	 */
 	static <S> AxisMap<S> from(Collection<S> coordinates)
 	{
+		assert (coordinates != null) : "The coordinates are null";
+
 		// Create a map
 		Map<S, Integer> map = new HashMap<>(coordinates.size());
 

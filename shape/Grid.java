@@ -12,21 +12,21 @@ public final class Grid implements Iterable<IndexPair>
 
 	private Grid(Rectangle<Integer> rectangle)
 	{
-		assert rectangle != null;
+		assert rectangle != null : "Rectangle is null";
 
+		this.rectangle = rectangle;
+
+		// TODO: Remove???
 		// Create a new Grid
 		grid = new ArrayList<>();
 
 		// For each possible x value, add each possible y value to the grid
 		IntStream.range(rectangle.getBorder(Direction.LEFT), rectangle.getBorder(Direction.RIGHT)).forEach(x -> {
-					// Add each possible index pair for each x to the grid
-					grid.addAll(IntStream.range(rectangle.getBorder(Direction.BOTTOM),
-							// Get a list of each possible index pair for each x
-							rectangle.getBorder(Direction.TOP)).mapToObj(y -> new IndexPair(x, y)).toList());
-				});
-
-		// TODO: remove???
-		this.rectangle = rectangle;
+			// Add each possible index pair for each x to the grid
+			grid.addAll(IntStream.range(rectangle.getBorder(Direction.BOTTOM),
+					// Get a list of each possible index pair for each x
+					rectangle.getBorder(Direction.TOP)).mapToObj(y -> new IndexPair(x, y)).toList());
+		});
 	}
 
 	/**

@@ -1,15 +1,18 @@
 package shape;
 
-record IndexPair(int xIndex, int yIndex) implements Comparable<IndexPair>
+record IndexPair(Integer xIndex, Integer yIndex) implements Comparable<IndexPair>
 {
 	/**
-	 * @param direction
+	 * @param direction Direction to increment
 	 * @return the next index pair in the given direction
 	 */
-	// TODO: Write
+	// TODO: Check if I need to see if it is out out bounds for the grid
 	public IndexPair increment(Direction direction)
 	{
-		return null;
+		return direction.horizontal ?
+				((direction == Direction.RIGHT) ? new IndexPair(xIndex + 1, yIndex) :
+						new IndexPair(xIndex - 1, yIndex)) : ((direction == Direction.TOP) ?
+				new IndexPair(xIndex, yIndex + 1) : new IndexPair(xIndex, yIndex - 1));
 	}
 
 	/**
