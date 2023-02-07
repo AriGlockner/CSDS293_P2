@@ -6,7 +6,6 @@ record IndexPair(Integer xIndex, Integer yIndex) implements Comparable<IndexPair
 	 * @param direction Direction to increment
 	 * @return the next index pair in the given direction
 	 */
-	// TODO: Check if I need to see if it is out out bounds for the grid
 	public IndexPair increment(Direction direction)
 	{
 		return direction.horizontal ?
