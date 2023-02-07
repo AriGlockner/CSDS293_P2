@@ -63,9 +63,15 @@ public final class Grid implements Iterable<IndexPair>
 		// Stores the current index in the grid
 		int index;
 
+		/**
+		 * Instantiates a new GridIterator
+		 *
+		 * @param grid the grid to instantiate
+		 */
 		private GridIterator(Grid grid)
 		{
 			this.grid = grid.grid;
+			index = 0;
 		}
 
 		/**
@@ -85,11 +91,5 @@ public final class Grid implements Iterable<IndexPair>
 		{
 			return grid.get(index++);
 		}
-	}
-
-	public static void main(String[] args)
-	{
-		Grid grid = Grid.from(Rectangle.of(1, 4, 1, 5));
-		System.out.println(grid);
 	}
 }
