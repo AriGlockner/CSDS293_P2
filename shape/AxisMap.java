@@ -73,7 +73,6 @@ public final class AxisMap<S>
 		return new AxisMap<>(map);
 	}
 
-
 	/**
 	 * @return the Axis Map as a string
 	 */
@@ -81,12 +80,5 @@ public final class AxisMap<S>
 	public String toString()
 	{
 		return index.toString();
-	}
-
-	public static void main(String[] args)
-	{
-		Collection<String> c = Set.of("a", "b", "c", "d");
-		AxisMap<String> foo = AxisMap.from(c);
-		System.out.println(foo);
 	}
 }

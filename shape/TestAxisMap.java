@@ -1,10 +1,10 @@
 package shape;
 
 import org.junit.*;
+
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
+import java.util.stream.*;
+
 import static org.junit.Assert.*;
 
 /**

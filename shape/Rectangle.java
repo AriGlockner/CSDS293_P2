@@ -1,8 +1,6 @@
 package shape;
 
-import java.util.Collection;
-import java.util.EnumMap;
-import java.util.Set;
+import java.util.*;
 
 /**
  * The building block of the polygon module is a public final class Rectangle. A rectangle is defined by its borders
