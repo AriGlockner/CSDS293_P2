@@ -54,18 +54,18 @@ public final class AxisMap<S>
 
 	/**
 	 * @param coordinates list of coordinates to put into the map
-	 * @param <S>         generic type of the coordinates
+	 * @param <T>         generic type of the coordinates
 	 * @return a new AxisMap starting from the given coordinates
 	 */
-	static <S> AxisMap<S> from(Collection<S> coordinates)
+	static <T> AxisMap<T> from(Collection<T> coordinates)
 	{
 		assert (coordinates != null) : "The coordinates are null";
 
 		// Create a map
-		Map<S, Integer> map = new HashMap<>(coordinates.size());
+		Map<T, Integer> map = new HashMap<>(coordinates.size());
 
 		// Convert the collection into an ArrayList
-		ArrayList<S> cords = new ArrayList<>(coordinates);
+		List<T> cords = new ArrayList<>(coordinates);
 
 		// Map Each coordinate to the index it is associated with
 		IntStream.range(0, coordinates.size()).forEach(count -> map.put(cords.get(count), count));

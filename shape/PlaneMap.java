@@ -75,6 +75,12 @@ public final class PlaneMap<S>
 		return horizontal ? x.flatIndexOf(value) : y.flatIndexOf(value);
 	}
 
+	@Override
+	public String toString()
+	{
+		return x.toString() + " " + y.toString();
+	}
+
 	/**
 	 * @param rectangles Set of rectangles to create a PlaneMap of
 	 * @param <S>        Generic type of the Rectangles
