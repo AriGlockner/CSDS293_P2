@@ -5,8 +5,14 @@ import static org.junit.Assert.*;
 import java.util.*;
 import java.util.stream.*;
 
+/**
+ * This class tests the PlaneMap class
+ */
 public class TestPlaneMap
 {
+	/**
+	 * This method tests the PlaneMap class
+	 */
 	@Test
 	public void testPlaneMap()
 	{
