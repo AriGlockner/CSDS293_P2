@@ -109,19 +109,4 @@ public final class PlaneMap<S>
 	{
 		return new PlaneMap<>(AxisMap.from(x), AxisMap.from(y));
 	}
-
-
-	public static void main(String[] args)
-	{
-		Rectangle<Integer> r1 = Rectangle.of(1, 2, 1, 2);
-		Rectangle<Integer> r2 = Rectangle.of(3, 4, 4, 5);
-		Rectangle<Integer> r3 = Rectangle.of(0, 5, 2, 9);
-		PlaneMap<Integer> planeMap = PlaneMap.from(Set.of(r1, r2, r3));
-
-		System.out.println(planeMap.indexOf(2, true));
-		System.out.println(planeMap.indexOf(2, false));
-		System.out.println(planeMap.indexOf(1, true));
-		System.out.println(planeMap.xSize());
-		System.out.println(planeMap.ySize());
-	}
 }

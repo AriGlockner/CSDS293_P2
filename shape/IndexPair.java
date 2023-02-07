@@ -1,5 +1,11 @@
 package shape;
 
+/**
+ * The IndexPair class keeps track of the x and y coordinates for a point in the Grid class
+ *
+ * @param xIndex x-coordinate
+ * @param yIndex y-coordinate
+ */
 record IndexPair(Integer xIndex, Integer yIndex) implements Comparable<IndexPair>
 {
 	/**
@@ -26,6 +32,9 @@ record IndexPair(Integer xIndex, Integer yIndex) implements Comparable<IndexPair
 		return 2 * Integer.compare(xIndex, o.xIndex) + Integer.compare(yIndex, o.yIndex);
 	}
 
+	/**
+	 * @return (xIndex, yIndex)
+	 */
 	@Override
 	public String toString()
 	{

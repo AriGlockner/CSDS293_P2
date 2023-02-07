@@ -3,13 +3,19 @@ package shape;
 import org.junit.Test;
 
 import java.util.Random;
+
 import static org.junit.Assert.*;
 
 /**
  * Everything except Increment Method is tested in Grid class so this class tests the increment method
+ *
+ * @author ari
  */
 public class TestIndexPair
 {
+	/**
+	 * This class tests the Increment Method
+	 */
 	@Test
 	public void testIncrement()
 	{

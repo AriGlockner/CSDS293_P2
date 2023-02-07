@@ -7,8 +7,16 @@ import java.util.stream.*;
 
 import static org.junit.Assert.*;
 
+/**
+ * This class tests the Grid class
+ *
+ * @author ari
+ */
 public class TestGrid
 {
+	/**
+	 * Tests the Grid class
+	 */
 	@Test
 	public void testGrid()
 	{
@@ -19,7 +27,7 @@ public class TestGrid
 
 		// Test Iterating through Grid (which is done in the Grid Constructor class)
 		List<IndexPair> list = new ArrayList<>();
-		IntStream.range(1,4).forEach(x -> IntStream.range(1, 5).forEach(y -> list.add(new IndexPair(x, y))));
+		IntStream.range(1, 4).forEach(x -> IntStream.range(1, 5).forEach(y -> list.add(new IndexPair(x, y))));
 		assertEquals(list, grid.getGridAsList());
 
 		// Test the getGridAsRectangle Class
