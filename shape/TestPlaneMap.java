@@ -1,7 +1,9 @@
 package shape;
 
 import org.junit.*;
+
 import static org.junit.Assert.*;
+
 import java.util.*;
 import java.util.stream.*;
 
@@ -37,16 +39,18 @@ public class TestPlaneMap
 
 		// Of
 		assertEquals("[3.141592653589793, 3.3333333333333335, 2.718281828459045," +
-				" 5.0, 0.7071067811865476]", Stream.of(Math.PI, 10.0/3.0, Math.E, 5.0, Math.cos(Math.PI / 4.0))
+				" 5.0, 0.7071067811865476]", Stream.of(Math.PI, 10.0 / 3.0, Math.E, 5.0, Math.cos(Math.PI / 4.0))
 				.collect(Collectors.toCollection(ArrayList::new)).toString());
 
 		assertEquals("[foo, bar, , foobar]", Stream.of("foo", "bar", "", "foobar")
 				.collect(Collectors.toCollection(ArrayList::new)).toString());
 
 		// From
-		Assert.assertEquals("{1=4, 2=5, 3=1, -5=0, 4=2, 5=3} {0=0, 8=3, 1=4, 2=5}", PlaneMap.from(Set.of(
-				Rectangle.of(1, 2, 1, 2),
-				Rectangle.of(4, 5, 2, 8),
-				Rectangle.of(-5, 3, 0, 1))).toString());
+		// Have to use LinkedHashSet and add elements in to retain the order of the Rectangles which is necessary for toString
+		Set<Rectangle<Integer>> sets = new LinkedHashSet<>();
+		sets.add(Rectangle.of(1, 2, 1, 2));
+		sets.add(Rectangle.of(4, 5, 2, 8));
+		sets.add(Rectangle.of(-5, 3, 0, 1));
+		Assert.assertEquals("{1=0, 2=1, 3=5, 4=2, -5=4, 5=3} {8=3, 0=4, 1=5, 2=2}", PlaneMap.from(sets).toString());
 	}
 }

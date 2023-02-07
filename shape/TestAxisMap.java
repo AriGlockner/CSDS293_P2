@@ -29,6 +29,7 @@ public class TestAxisMap
 
 		// Check IndexOf
 		IntStream.range(0, 6).forEach(i -> assertEquals(Optional.of(i), axisMap.indexOf(i)));
+		assertEquals(Optional.empty(), axisMap.indexOf(99999));
 
 		// Check flat index of
 		IntStream.range(0, 6).forEach(i -> assertEquals((Integer) i, axisMap.flatIndexOf(i)));
