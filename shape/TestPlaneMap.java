@@ -2,10 +2,10 @@ package shape;
 
 import org.junit.*;
 
-import static org.junit.Assert.*;
-
 import java.util.*;
 import java.util.stream.*;
+
+import static org.junit.Assert.*;
 
 /**
  * This class tests the PlaneMap class
