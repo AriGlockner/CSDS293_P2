@@ -14,10 +14,12 @@ record IndexPair(Integer xIndex, Integer yIndex) implements Comparable<IndexPair
 	 */
 	public IndexPair increment(Direction direction)
 	{
-		return direction.horizontal ?
-				((direction == Direction.RIGHT) ? new IndexPair(xIndex + 1, yIndex) :
-						new IndexPair(xIndex - 1, yIndex)) : ((direction == Direction.TOP) ?
-				new IndexPair(xIndex, yIndex + 1) : new IndexPair(xIndex, yIndex - 1));
+		if (direction.horizontal)
+			return direction == Direction.RIGHT ?
+					new IndexPair(xIndex + 1, yIndex) : new IndexPair(xIndex - 1, yIndex);
+		else
+			return direction == Direction.TOP ?
+					new IndexPair(xIndex, yIndex + 1) : new IndexPair(xIndex, yIndex - 1);
 	}
 
 	/**

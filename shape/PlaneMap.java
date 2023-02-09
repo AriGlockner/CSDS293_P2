@@ -25,6 +25,8 @@ public final class PlaneMap<S>
 	 */
 	private PlaneMap(AxisMap<S> x, AxisMap<S> y)
 	{
+		assert x != null;
+		assert y != null;
 		this.x = x;
 		this.y = y;
 	}

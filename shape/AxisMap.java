@@ -12,6 +12,8 @@ import java.util.stream.IntStream;
  */
 public final class AxisMap<S>
 {
+	// TODO: Make all Generics extend Comparable
+
 	// The AxisMap that stores the coordinate as the key and the index as the value
 	private final Map<S, Integer> index;
 
