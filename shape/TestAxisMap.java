@@ -40,9 +40,9 @@ public class TestAxisMap
 		// Check from method
 		AxisMap<Integer> axisMap2 = AxisMap.from(Stream.of(2, 1, 4)
 				.collect(Collectors.toCollection(ArrayList::new)));
-		assertEquals("{4=2, 1=1, 2=0}", axisMap2.toString());
+		assertEquals("{4=2, 1=0, 2=1}", axisMap2.toString());
 
-		Assert.assertEquals("{the=5, eat=4, not=3, bear=6, duck=1, does=2}",
+		Assert.assertEquals("{the=6, eat=3, bear=0, not=4, does=1, duck=2}",
 				AxisMap.from(Stream.of("the", "duck", "does", "not", "eat", "the", "bear")
 						.collect(Collectors.toCollection(ArrayList::new))).toString());
 	}

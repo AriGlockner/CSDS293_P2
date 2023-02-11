@@ -10,7 +10,7 @@ import java.util.Set;
  *
  * @param <S>
  */
-public final class PlaneMap<S>
+public final class PlaneMap<S extends Comparable<S>>
 {
 	// Horizontal AxisMap
 	private final AxisMap<S> x;
@@ -80,7 +80,7 @@ public final class PlaneMap<S>
 	@Override
 	public String toString()
 	{
-		return x.toString() + " " + y.toString();
+		return x + " " + y;
 	}
 
 	/**
@@ -107,7 +107,7 @@ public final class PlaneMap<S>
 	 * @param <S> generic type of the axis map
 	 * @return a new AxisPlane which consists of 2 AxisMaps
 	 */
-	public static <S> PlaneMap<S> of(Collection<S> x, Collection<S> y)
+	public static <S extends Comparable<S>> PlaneMap<S> of(Collection<S> x, Collection<S> y)
 	{
 		return new PlaneMap<>(AxisMap.from(x), AxisMap.from(y));
 	}

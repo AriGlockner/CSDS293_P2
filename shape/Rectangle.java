@@ -69,6 +69,12 @@ public final class Rectangle<T extends Comparable<T>>
 		return false;
 	}
 
+	@Override
+	public String toString()
+	{
+		return getBorders(ALL_BOUNDS).toString();
+	}
+
 	/**
 	 * @param left   left boundary
 	 * @param right  right boundary

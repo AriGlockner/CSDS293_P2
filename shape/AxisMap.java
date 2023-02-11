@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
  *
  * @author ari
  */
-public final class AxisMap<S>
+public final class AxisMap<S extends Comparable<S>>
 {
 	// TODO: Make all Generics extend Comparable
 
@@ -59,7 +59,7 @@ public final class AxisMap<S>
 	 * @param <T>         generic type of the coordinates
 	 * @return a new AxisMap starting from the given coordinates
 	 */
-	static <T> AxisMap<T> from(Collection<T> coordinates)
+	static <T extends Comparable<T>> AxisMap<T> from(Collection<T> coordinates)
 	{
 		assert (coordinates != null) : "The coordinates are null";
 
@@ -68,6 +68,7 @@ public final class AxisMap<S>
 
 		// Convert the collection into an ArrayList
 		List<T> cords = new ArrayList<>(coordinates);
+		//Collections.sort(cords);
 
 		// Map Each coordinate to the index it is associated with
 		IntStream.range(0, coordinates.size()).forEach(count -> map.put(cords.get(count), count));
