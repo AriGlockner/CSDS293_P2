@@ -80,6 +80,16 @@ public final class PlaneMap<S extends Comparable<S>>
 		return x + " " + y;
 	}
 
+	Set<S> getHorizontalKeys()
+	{
+		return x.getKeys();
+	}
+
+	Set<S> getVerticalKeys()
+	{
+		return y.getKeys();
+	}
+
 	/**
 	 * @param rectangles Set of rectangles to create a PlaneMap of
 	 * @param <S>        Generic type of the Rectangles

@@ -86,4 +86,9 @@ public final class AxisMap<S extends Comparable<S>>
 	{
 		return index.toString();
 	}
+
+	Set<S> getKeys()
+	{
+		return index.keySet();
+	}
 }
