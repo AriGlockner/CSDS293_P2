@@ -1,9 +1,6 @@
 package shape;
 
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 /**
  * The PlaneMap class maintains a horizontal and a vertical AxisMap.
@@ -90,13 +87,15 @@ public final class PlaneMap<S extends Comparable<S>>
 	 */
 	public static <S extends Comparable<S>> PlaneMap<S> from(Set<Rectangle<S>> rectangles)
 	{
-		Collection<S> horizontal = new LinkedList<>();
-		Collection<S> vertical = new LinkedList<>();
+		Set<S> horizontal = new LinkedHashSet<>();
+		Set<S> vertical = new LinkedHashSet<>();
 
 		rectangles.forEach(rect -> {
 			horizontal.addAll(rect.getBorders(Rectangle.HORIZONTAL_BOUNDS).values());
 			vertical.addAll(rect.getBorders(Rectangle.VERTICAL_BOUNDS).values());
 		});
+
+
 
 		return of(horizontal, vertical);
 	}

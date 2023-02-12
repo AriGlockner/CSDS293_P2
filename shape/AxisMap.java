@@ -1,5 +1,7 @@
 package shape;
 
+import org.junit.Assert;
+
 import java.util.*;
 import java.util.stream.IntStream;
 
@@ -68,7 +70,7 @@ public final class AxisMap<S extends Comparable<S>>
 
 		// Convert the collection into an ArrayList
 		List<T> cords = new ArrayList<>(coordinates);
-		//Collections.sort(cords);
+		Collections.sort(cords);
 
 		// Map Each coordinate to the index it is associated with
 		IntStream.range(0, coordinates.size()).forEach(count -> map.put(cords.get(count), count));
