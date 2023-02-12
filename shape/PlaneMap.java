@@ -5,7 +5,8 @@ import java.util.*;
 /**
  * The PlaneMap class maintains a horizontal and a vertical AxisMap.
  *
- * @param <S>
+ * @param <S> generic type of the PlaneMap
+ * @author ari
  */
 public final class PlaneMap<S extends Comparable<S>>
 {
@@ -80,11 +81,17 @@ public final class PlaneMap<S extends Comparable<S>>
 		return x + " " + y;
 	}
 
+	/**
+	 * @return the keys associated with the x AxisMap
+	 */
 	Set<S> getHorizontalKeys()
 	{
 		return x.getKeys();
 	}
 
+	/**
+	 * @return the keys associated with the y AxisMap
+	 */
 	Set<S> getVerticalKeys()
 	{
 		return y.getKeys();
@@ -104,7 +111,6 @@ public final class PlaneMap<S extends Comparable<S>>
 			horizontal.addAll(rect.getBorders(Rectangle.HORIZONTAL_BOUNDS).values());
 			vertical.addAll(rect.getBorders(Rectangle.VERTICAL_BOUNDS).values());
 		});
-
 
 
 		return of(horizontal, vertical);

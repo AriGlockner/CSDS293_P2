@@ -1,7 +1,5 @@
 package shape;
 
-import org.junit.Assert;
-
 import java.util.*;
 import java.util.stream.IntStream;
 
@@ -14,8 +12,6 @@ import java.util.stream.IntStream;
  */
 public final class AxisMap<S extends Comparable<S>>
 {
-	// TODO: Make all Generics extend Comparable
-
 	// The AxisMap that stores the coordinate as the key and the index as the value
 	private final Map<S, Integer> index;
 
@@ -87,6 +83,9 @@ public final class AxisMap<S extends Comparable<S>>
 		return index.toString();
 	}
 
+	/**
+	 * @return the keys associated with the AxisMap
+	 */
 	Set<S> getKeys()
 	{
 		return index.keySet();
