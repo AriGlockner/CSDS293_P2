@@ -51,6 +51,6 @@ public class TestPlaneMap
 		sets.add(Rectangle.of(1, 2, 1, 2));
 		sets.add(Rectangle.of(4, 5, 2, 8));
 		sets.add(Rectangle.of(-5, 3, 0, 1));
-		Assert.assertEquals("{1=1, 2=2, 3=3, -5=0, 4=4, 5=5} {0=0, 8=5, 1=2, 2=4}", PlaneMap.from(sets).toString());
+		Assert.assertEquals("{1=1, 2=2, 3=3, -5=0, 4=4, 5=5} {0=0, 8=3, 1=1, 2=2}", PlaneMap.from(sets).toString());
 	}
 }

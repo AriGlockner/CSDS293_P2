@@ -34,7 +34,6 @@ final class RectangleGroup<T extends Comparable<T>>
 
 		set = rectangles;
 		planeMap = PlaneMap.from(rectangles);
-		System.out.println(planeMap);
 
 		matrixGrid = new TreeMap<>();
 
@@ -89,15 +88,6 @@ final class RectangleGroup<T extends Comparable<T>>
 	public boolean isOverlapping()
 	{
 		return isOverlapping;
-	}
-
-	/**
-	 * @param indexPair the Point to count the number of rectangles occupying that space
-	 * @return the number of Rectangles at the specified Index Pair
-	 */
-	public long getCountAtIndexPair(IndexPair indexPair)
-	{
-		return matrixGrid.get(indexPair);
 	}
 
 	/**
