@@ -35,7 +35,22 @@ final class RectangleGroup<T extends Comparable<T>>
 		set = rectangles;
 		planeMap = PlaneMap.from(rectangles);
 
-		matrixGrid = new TreeMap<>();
+		// Helper method to create the MatrixGrid
+		matrixGrid = createMatrixGrid();
+
+		// Set isOverlapping
+		isOverlapping = matrixGrid.values().stream().max(Long::compareTo).orElse(0L) > 1L;
+	}
+
+	/**
+	 * @return a new MatrixGrid from the fields set and planeMap
+	 */
+	private NavigableMap<IndexPair, Long> createMatrixGrid()
+	{
+		assert set != null : "The Set of Rectangles is null";
+		assert planeMap != null : "ThePlaneMap is null";
+
+		NavigableMap<IndexPair, Long> matrixGrid = new TreeMap<>();
 
 		// Set all every entry in matrixGrid as <IndexPair, 0L>
 		IntStream.range(0, planeMap.xSize()).forEach(x ->
@@ -49,7 +64,7 @@ final class RectangleGroup<T extends Comparable<T>>
 
 		// Update the Matrix Grid
 		// For each Rectangle in the set
-		rectangles.forEach(rectangle -> {
+		set.forEach(rectangle -> {
 			// Get Horizontal Indices
 			IntStream.range(xSet.indexOf(rectangle.getBorder(Direction.LEFT)),
 					1 + xSet.indexOf(rectangle.getBorder(Direction.RIGHT))).forEach(x -> {
@@ -62,8 +77,7 @@ final class RectangleGroup<T extends Comparable<T>>
 			});
 		});
 
-		// Set isOverlapping
-		isOverlapping = matrixGrid.values().stream().max(Long::compareTo).orElse(0L) > 1L;
+		return matrixGrid;
 	}
 
 	/**
