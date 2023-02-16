@@ -85,7 +85,7 @@ final class RectangleGroup<T extends Comparable<T>>
 	 */
 	public Set<Rectangle<T>> getSet()
 	{
-		return set;
+		return Collections.unmodifiableSet(set);
 	}
 
 	/**
@@ -94,6 +94,14 @@ final class RectangleGroup<T extends Comparable<T>>
 	public PlaneMap<T> getPlaneMap()
 	{
 		return planeMap;
+	}
+
+	/**
+	 * @return matrix grid
+	 */
+	public NavigableMap<IndexPair, Long> getMatrixGrid()
+	{
+		return Collections.unmodifiableNavigableMap(matrixGrid);
 	}
 
 	/**
