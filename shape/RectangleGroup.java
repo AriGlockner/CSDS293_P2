@@ -118,7 +118,7 @@ final class RectangleGroup<T extends Comparable<T>>
 	@Override
 	public String toString()
 	{
-		return matrixGrid.toString();
+		return getMatrixGrid().toString();
 	}
 
 	/**
