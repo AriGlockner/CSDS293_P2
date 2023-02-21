@@ -67,4 +67,22 @@ public class TestRectangleGroup
 						"(2, 0)=1, (2, 1)=1, (2, 2)=1, (2, 3)=1, (3, 0)=1, (3, 1)=1, (3, 2)=1, (3, 3)=1}",
 				rectangleGroup.toString());
 	}
+
+	@Test
+	public void testConnected()
+	{
+		Set<Rectangle<Integer>> rectangleSet1 = new LinkedHashSet<>();
+		Set<Rectangle<Integer>> rectangleSet2 = new LinkedHashSet<>();
+
+		rectangleSet1.add(Rectangle.of(1, 2, 1, 2));
+		rectangleSet2.add(Rectangle.of(1, 2, 1, 2));
+		rectangleSet2.add(Rectangle.of(5, 10, 5, 10));
+
+		RectangleGroup<Integer> rectangleGroup1 = RectangleGroup.from(rectangleSet1);
+		RectangleGroup<Integer> rectangleGroup2 = RectangleGroup.from(rectangleSet2);
+
+		assertTrue(rectangleGroup1.isConnected());
+		System.out.println(rectangleGroup2.isConnected());
+		assertFalse(rectangleGroup2.isConnected());
+	}
 }

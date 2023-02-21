@@ -1,11 +1,16 @@
 package shape;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
 /**
  * This enum represents the keys for the EnumMaps that maps to the coordinates for the Rectangle.
  *
  * @author ari
  */
-public enum Direction
+public enum Direction implements Iterable<Direction>
 {
 	// Directions
 	LEFT(true, false),
@@ -26,5 +31,11 @@ public enum Direction
 	{
 		this.horizontal = horizontal;
 		this.increment = increment;
+	}
+
+	@Override
+	public Iterator<Direction> iterator()
+	{
+		return new ArrayList<>(Rectangle.ALL_BOUNDS).iterator();
 	}
 }
