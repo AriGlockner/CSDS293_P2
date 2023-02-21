@@ -68,21 +68,56 @@ public class TestRectangleGroup
 				rectangleGroup.toString());
 	}
 
+	/**
+	 * This method tests the isConnected method in the RectangleGroup class
+	 */
 	@Test
-	public void testConnected()
+	public void testIsConnected()
 	{
+		// Integer Tests
+		// Create Rectangle sets with Integers
 		Set<Rectangle<Integer>> rectangleSet1 = new LinkedHashSet<>();
 		Set<Rectangle<Integer>> rectangleSet2 = new LinkedHashSet<>();
 
+		// Add rectangles to sets
 		rectangleSet1.add(Rectangle.of(1, 2, 1, 2));
 		rectangleSet2.add(Rectangle.of(1, 2, 1, 2));
 		rectangleSet2.add(Rectangle.of(5, 10, 5, 10));
 
+		// Create RectangleGroups from Rectangles
 		RectangleGroup<Integer> rectangleGroup1 = RectangleGroup.from(rectangleSet1);
 		RectangleGroup<Integer> rectangleGroup2 = RectangleGroup.from(rectangleSet2);
 
+		// Test isConnected method
 		assertTrue(rectangleGroup1.isConnected());
-		System.out.println(rectangleGroup2.isConnected());
 		assertFalse(rectangleGroup2.isConnected());
+
+		// String Tests
+		// Create Sets of Rectangles
+		Set<Rectangle<String>> rectangleStringSet1 = new LinkedHashSet<>();
+		Set<Rectangle<String>> rectangleStringSet2 = new LinkedHashSet<>();
+		Set<Rectangle<String>> rectangleStringSet3 = new LinkedHashSet<>();
+
+		// Add Rectangles to sets
+		// Test 1 - Not connected
+		rectangleStringSet1.add(Rectangle.of("bar", "foo", "bar", "foo"));
+		rectangleStringSet1.add(Rectangle.of("(555) 555-5556", "<b>", "(555) 555-5556", "<b>"));
+
+		// Test 2 - Multiple connected Rectangles
+		rectangleStringSet2.add(Rectangle.of("crap", "fuck", "damn", "shit"));
+		rectangleStringSet2.add(Rectangle.of("crap", "damn", "fuck", "shit"));
+
+		// Test 3 - 1 Rectangle
+		rectangleStringSet3.add(Rectangle.of("bar", "foo", "bar", "foo"));
+
+		// Create RectangleGroups from Rectangles
+		RectangleGroup<String> rectangleStringGroup1 = RectangleGroup.from(rectangleStringSet1);
+		RectangleGroup<String> rectangleStringGroup2 = RectangleGroup.from(rectangleStringSet2);
+		RectangleGroup<String> rectangleStringGroup3 = RectangleGroup.from(rectangleStringSet3);
+
+		// Test isConnected
+		assertFalse(rectangleStringGroup1.isConnected());
+		assertTrue(rectangleStringGroup2.isConnected());
+		assertTrue(rectangleStringGroup3.isConnected());
 	}
 }
