@@ -2,8 +2,6 @@ package shape;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
 /**
  * This enum represents the keys for the EnumMaps that maps to the coordinates for the Rectangle.
@@ -33,6 +31,9 @@ public enum Direction implements Iterable<Direction>
 		this.increment = increment;
 	}
 
+	/**
+	 * @return a new iterator allowing loop to run over the Direction class
+	 */
 	@Override
 	public Iterator<Direction> iterator()
 	{
